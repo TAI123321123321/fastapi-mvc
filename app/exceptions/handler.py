@@ -2,8 +2,9 @@ from fastapi import FastAPI
 from fastapi import Request
 from fastapi.responses import JSONResponse
 
-from exceptions.scheme import AppException
-from views import common_view
+from app.exceptions.scheme import AppException
+from app.models.dto import ApiResponse
+from app.views import common_view
 
 
 def add_json(app: FastAPI):
@@ -15,12 +16,8 @@ def add_json(app: FastAPI):
         :param exc: Exception object
         :return: JSON response with error details
         """
-        return JSONResponse(
-            {
-                "message": exc.message,
-            },
-            status_code=exc.status_code,
-        )
+        payload = ApiResponse(code=exc.status_code, message=exc.message, data=None)
+        return JSONResponse(payload.model_dump(), status_code=exc.status_code)
 def add_html(app: FastAPI):
     @app.exception_handler(AppException)
     async def exception_handler(request: Request, exc: AppException):

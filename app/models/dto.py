@@ -1,9 +1,16 @@
 from datetime import datetime
+from typing import Any
 
 from pydantic import BaseModel
 from pydantic import Field
 
-from models.enums import UserRole
+from app.models.enums import UserRole
+
+
+class ApiResponse(BaseModel):
+    code: int
+    message: str
+    data: Any | None = None
 
 # USER
 class UserCreateDTO(BaseModel):

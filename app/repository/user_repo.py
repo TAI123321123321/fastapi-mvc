@@ -1,11 +1,22 @@
-from models.db import UserDb
-from core.db_context import session_maker
+from app.models.db import UserDb
+from app.core.db_context import session_maker
 
 
 def add(user: UserDb)-> UserDb:
-    with session_maker.begin() as session:
+    # with session_maker.begin() as session:
+    #     session.add(user)
+    #     return user
+    session = session_maker()
+    try:
         session.add(user)
+        session.commit()  # tự quyết định khi nào commit
+        session.refresh(user)
         return user
+    except:
+        session.rollback()
+        raise
+    finally:
+        session.close()
 
 def update(user: UserDb) -> None:
     with session_maker.begin() as session:

@@ -6,6 +6,7 @@ services:
     environment:
       - DB_CONNECTION_STRING=${DB_CONNECTION_STRING}
       - HASH_SALT=${HASH_SALT}
+      - URI_DB=${URI_DB}
     build: .
     ports:
       - "3000:3000"

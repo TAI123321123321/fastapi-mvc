@@ -1,19 +1,333 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GoPlay Portal | Đăng nhập</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ea3a60;
+            --secondary: #ff9c42;
+            --dark: #05050f;
+            --card: rgba(14, 18, 38, 0.85);
+            --border: rgba(255, 255, 255, 0.08);
+            --text: #f6f7fb;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Space Grotesk", sans-serif;
+            color: var(--text);
+            background: radial-gradient(circle at top, rgba(234, 58, 96, 0.45), transparent 55%),
+                radial-gradient(circle at 20% 20%, rgba(255, 156, 66, 0.35), transparent 40%),
+                radial-gradient(circle at 80% 10%, rgba(255, 156, 66, 0.2), transparent 35%),
+                #04040b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 32px 16px;
+        }
+
+        .login-shell {
+            width: min(1100px, 100%);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            background: linear-gradient(120deg, rgba(12, 15, 33, 0.85), rgba(6, 7, 18, 0.9));
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
+            border-radius: 32px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .login-shell::before,
+        .login-shell::after {
+            content: "";
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(234, 58, 96, 0.4), transparent 70%);
+            filter: blur(4px);
+            z-index: 0;
+        }
+
+        .login-shell::before {
+            top: -120px;
+            left: -120px;
+        }
+
+        .login-shell::after {
+            bottom: -140px;
+            right: -100px;
+        }
+
+        .login-left,
+        .login-right {
+            padding: clamp(32px, 5vw, 60px);
+            position: relative;
+            z-index: 1;
+        }
+
+        .login-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 32px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand span {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            background: linear-gradient(140deg, var(--primary), var(--secondary));
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 20px;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 25px rgba(234, 58, 96, 0.45);
+        }
+
+        .brand strong {
+            font-size: 20px;
+            letter-spacing: 3px;
+        }
+
+        .intro h1 {
+            margin: 0;
+            font-size: clamp(32px, 4vw, 44px);
+            line-height: 1.2;
+        }
+
+        .intro p {
+            margin: 12px 0 0;
+            color: rgba(246, 247, 251, 0.75);
+            font-size: 16px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 16px;
+        }
+
+        .feature-card {
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .feature-card span {
+            display: inline-flex;
+            width: 32px;
+            height: 32px;
+            border-radius: 12px;
+            align-items: center;
+            justify-content: center;
+            background: rgba(234, 58, 96, 0.15);
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            margin: 0;
+            font-size: 14px;
+            color: rgba(246, 247, 251, 0.75);
+        }
+
+        .login-right {
+            background: linear-gradient(160deg, rgba(9, 12, 29, 0.95), rgba(5, 8, 22, 0.9));
+            border-left: 1px solid var(--border);
+            border-radius: 32px 0 0 32px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-header h2 {
+            margin: 0;
+            font-size: 28px;
+            color: #fff;
+        }
+
+        .form-header p {
+            margin: 6px 0 0;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 15px;
+        }
+
+        .input-field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .input-field label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .input-field input {
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.04);
+            padding: 14px 16px;
+            font-size: 15px;
+            color: #fff;
+            outline: none;
+            transition: border 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .input-field input:focus {
+            border-color: rgba(234, 58, 96, 0.8);
+            box-shadow: 0 0 0 2px rgba(234, 58, 96, 0.25);
+        }
+
+        .form-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .form-meta a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .submit-btn {
+            border: none;
+            border-radius: 16px;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            background: linear-gradient(120deg, var(--primary), var(--secondary));
+            color: #fff;
+            box-shadow: 0 15px 35px rgba(234, 58, 96, 0.35);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 45px rgba(234, 58, 96, 0.4);
+        }
+
+        .social-login {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-login button {
+            flex: 1;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            color: #fff;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.65);
+        }
+
+        @media (max-width: 900px) {
+            .login-shell {
+                grid-template-columns: 1fr;
+            }
+            .login-right {
+                border-radius: 0 0 32px 32px;
+                border-left: none;
+                border-top: 1px solid var(--border);
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Main page Jinja templating</h1>
-    <h3>Server time: {{date}}</h3>
-    <h3><a href="/check">Check auth page</a></h3>
-    <h3>
-        <a href="/api/docs">Api swagger docs</a>
-    </h3>
+    <div class="login-shell">
+        <section class="login-left">
+            <div class="brand">
+                <span>GP</span>
+                <strong>GoPlay Studio</strong>
+            </div>
+            <div class="intro">
+                <h1>Cổng đăng nhập dành cho nhà phát triển & vận hành sản phẩm.</h1>
+                <p>Quản lý user, theo dõi tiến độ phát triển và truy cập ngay vào hệ sinh thái game của bạn.</p>
+            </div>
+            <div class="feature-grid">
+                <article class="feature-card">
+                    <span>⚡</span>
+                    <p>Tốc độ duyệt đăng nhập nhanh chóng với bảo mật đa lớp.</p>
+                </article>
+                <article class="feature-card">
+                    <span>🎮</span>
+                    <p>Đồng bộ dữ liệu game, tài sản số và sự kiện chỉ trong một cú click.</p>
+                </article>
+                <article class="feature-card">
+                    <span>📊</span>
+                    <p>Dashboard realtime để theo dõi chỉ số vận hành quan trọng.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="login-right">
+            <form>
+                <div class="form-header">
+                    <h2>Đăng nhập tài khoản</h2>
+                    <p>Server time: {{ date }}</p>
+                </div>
+                <div class="input-field">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="you@goplay.vn" required>
+                </div>
+                <div class="input-field">
+                    <label for="password">Mật khẩu</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+                <div class="form-meta">
+                    <label>
+                        <input type="checkbox" style="margin-right: 6px;"> Ghi nhớ
+                    </label>
+                    <a href="#">Quên mật khẩu?</a>
+                </div>
+                <button type="submit" class="submit-btn">Đăng nhập</button>
+                <div class="social-login">
+                    <button type="button">Đăng nhập Google</button>
+                    <button type="button">Đăng nhập SSO</button>
+                </div>
+                <p class="footer-note">Chưa có tài khoản? <a href="#" style="color: var(--secondary); text-decoration: none;">Đăng ký ngay</a></p>
+            </form>
+        </section>
+    </div>
 </body>
 
 </html>

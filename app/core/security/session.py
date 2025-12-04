@@ -5,13 +5,13 @@ from fastapi import Request
 from fastapi import Response
 from fastapi import Depends
 
-from core.config import CONFIG
-from services import user_service
-from exceptions.scheme import AppException
-from models import enums
-from models import dto
-from core.security import jwt
-from core.security import bcrypt_hashing
+from app.core.config import CONFIG
+from app.services import user_service
+from app.exceptions.scheme import AppException
+from app.models import enums
+from app.models import dto
+from app.core.security import jwt
+from app.core.security import bcrypt_hashing
 
 
 def get_token(req: Request, res: Response) -> dto.Token:
@@ -34,7 +34,7 @@ def get_user(req: Request, res: Response) -> dto.UserDTO:
         res.delete_cookie(CONFIG.COOKIES_KEY_NAME)
         raise AppException(status_code=401, message="Unauthorized")
 
-    return user
+    return user.to_dto()
 
 def get_admin(user: dto.UserDTO = Depends(get_user)) -> dto.UserDTO:
     if user.role != enums.UserRole.ADMIN:
@@ -46,7 +46,6 @@ async def login(obj: dto.UserLoginDTO, res: Response) -> str:
     NOW = datetime.now(timezone.utc)
 
     user_db = user_service.get_by_email(obj.email)
-    print(obj.password, user_db.password)
     if bcrypt_hashing.validate(obj.password, user_db.password) is False:
         raise AppException("Incorrect password", 401)
 
