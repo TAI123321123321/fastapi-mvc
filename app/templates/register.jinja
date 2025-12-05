@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GoPlay Portal | Đăng nhập</title>
+    <title>GoPlay Portal | Đăng ký</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
@@ -37,7 +37,7 @@
             padding: 32px 16px;
         }
 
-        .login-shell {
+        .register-shell {
             width: min(1100px, 100%);
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -50,8 +50,8 @@
             position: relative;
         }
 
-        .login-shell::before,
-        .login-shell::after {
+        .register-shell::before,
+        .register-shell::after {
             content: "";
             position: absolute;
             width: 320px;
@@ -62,24 +62,24 @@
             z-index: 0;
         }
 
-        .login-shell::before {
+        .register-shell::before {
             top: -120px;
             left: -120px;
         }
 
-        .login-shell::after {
+        .register-shell::after {
             bottom: -140px;
             right: -100px;
         }
 
-        .login-left,
-        .login-right {
+        .register-left,
+        .register-right {
             padding: clamp(32px, 5vw, 60px);
             position: relative;
             z-index: 1;
         }
 
-        .login-left {
+        .register-left {
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -154,7 +154,7 @@
             color: rgba(246, 247, 251, 0.75);
         }
 
-        .login-right {
+        .register-right {
             background: linear-gradient(160deg, rgba(9, 12, 29, 0.95), rgba(5, 8, 22, 0.9));
             border-left: 1px solid var(--border);
             border-radius: 32px 0 0 32px;
@@ -205,20 +205,6 @@
             box-shadow: 0 0 0 2px rgba(234, 58, 96, 0.25);
         }
 
-        .form-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .form-meta a {
-            color: var(--secondary);
-            text-decoration: none;
-            font-weight: 500;
-        }
-
         .submit-btn {
             border: none;
             border-radius: 16px;
@@ -237,33 +223,37 @@
             box-shadow: 0 20px 45px rgba(234, 58, 96, 0.4);
         }
 
-        .social-login {
-            display: flex;
-            gap: 12px;
-        }
-
-        .social-login button {
-            flex: 1;
-            border-radius: 14px;
-            border: 1px solid var(--border);
-            padding: 12px;
-            background: rgba(255, 255, 255, 0.03);
-            color: #fff;
-            cursor: pointer;
-            font-weight: 500;
-        }
-
         .footer-note {
             text-align: center;
             font-size: 14px;
             color: rgba(255, 255, 255, 0.65);
         }
 
+        .error-message {
+            background: rgba(234, 58, 96, 0.2);
+            border: 1px solid rgba(234, 58, 96, 0.5);
+            border-radius: 12px;
+            padding: 12px;
+            color: #ff6b8a;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .success-message {
+            background: rgba(46, 213, 115, 0.2);
+            border: 1px solid rgba(46, 213, 115, 0.5);
+            border-radius: 12px;
+            padding: 12px;
+            color: #6bcf7f;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
         @media (max-width: 900px) {
-            .login-shell {
+            .register-shell {
                 grid-template-columns: 1fr;
             }
-            .login-right {
+            .register-right {
                 border-radius: 0 0 32px 32px;
                 border-left: none;
                 border-top: 1px solid var(--border);
@@ -273,61 +263,78 @@
 </head>
 
 <body>
-    <div class="login-shell">
-        <section class="login-left">
+    <div class="register-shell">
+        <section class="register-left">
             <div class="brand">
                 <span>GP</span>
                 <strong>GoPlay Studio</strong>
             </div>
             <div class="intro">
-                <h1>Cổng đăng nhập dành cho nhà phát triển & vận hành sản phẩm.</h1>
-                <p>Quản lý user, theo dõi tiến độ phát triển và truy cập ngay vào hệ sinh thái game của bạn.</p>
+                <h1>Tạo tài khoản mới cho nhà phát triển & vận hành.</h1>
+                <p>Tham gia hệ sinh thái GoPlay và bắt đầu quản lý dự án game của bạn ngay hôm nay.</p>
             </div>
             <div class="feature-grid">
                 <article class="feature-card">
-                    <span>⚡</span>
-                    <p>Tốc độ duyệt đăng nhập nhanh chóng với bảo mật đa lớp.</p>
+                    <span>🚀</span>
+                    <p>Tạo tài khoản nhanh chóng chỉ trong vài phút.</p>
                 </article>
                 <article class="feature-card">
-                    <span>🎮</span>
-                    <p>Đồng bộ dữ liệu game, tài sản số và sự kiện chỉ trong một cú click.</p>
+                    <span>🔒</span>
+                    <p>Bảo mật cao với mã hóa đa lớp và xác thực an toàn.</p>
                 </article>
                 <article class="feature-card">
-                    <span>📊</span>
-                    <p>Dashboard realtime để theo dõi chỉ số vận hành quan trọng.</p>
+                    <span>💼</span>
+                    <p>Quản lý dự án và team hiệu quả với công cụ chuyên nghiệp.</p>
                 </article>
             </div>
         </section>
 
-        <section class="login-right">
-            <form method="POST" action="/login">
+        <section class="register-right">
+            <form method="POST" action="/register">
                 <div class="form-header">
-                    <h2>Đăng nhập tài khoản</h2>
+                    <h2>Đăng ký tài khoản</h2>
                     <p>Server time: {{ date }}</p>
                 </div>
+                
+                {% if error %}
+                <div class="error-message">
+                    {{ error }}
+                </div>
+                {% endif %}
+                
+                {% if success %}
+                <div class="success-message">
+                    {{ success }}
+                </div>
+                {% endif %}
+
+                <div class="input-field">
+                    <label for="name">Tên</label>
+                    <input type="text" id="name" name="name" placeholder="Nhập tên của bạn" required>
+                </div>
+
+                <div class="input-field">
+                    <label for="surname">Họ</label>
+                    <input type="text" id="surname" name="surname" placeholder="Nhập họ của bạn" required>
+                </div>
+
                 <div class="input-field">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" placeholder="you@goplay.vn" required>
                 </div>
+
                 <div class="input-field">
                     <label for="password">Mật khẩu</label>
-                    <input type="password" id="password" name="password" placeholder="••••••••" required>
+                    <input type="password" id="password" name="password" placeholder="Tối thiểu 4 ký tự" required minlength="4">
                 </div>
-                <div class="form-meta">
-                    <label>
-                        <input type="checkbox" style="margin-right: 6px;"> Ghi nhớ
-                    </label>
-                    <a href="#">Quên mật khẩu?</a>
-                </div>
-                <button type="submit" class="submit-btn">Đăng nhập</button>
-                <div class="social-login">
-                    <button type="button">Đăng nhập Google</button>
-                    <button type="button">Đăng nhập SSO</button>
-                </div>
-                <p class="footer-note">Chưa có tài khoản? <a href="/register" style="color: var(--secondary); text-decoration: none;">Đăng ký ngay</a></p>
+
+                <button type="submit" class="submit-btn">Đăng ký</button>
+                
+                <p class="footer-note">Đã có tài khoản? <a href="/" style="color: var(--secondary); text-decoration: none;">Đăng nhập ngay</a></p>
             </form>
         </section>
     </div>
 </body>
 
 </html>
+

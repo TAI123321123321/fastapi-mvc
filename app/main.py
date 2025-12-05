@@ -6,8 +6,8 @@ from fastapi import FastAPI
 
 from app.core import lifespan
 from app.controllers.pages import page_controller
-from app.controllers.api import auth_controller
-from app.controllers.api import user_controller
+from app.controllers.api import auth as auth_controller
+from app.controllers.api import user as user_controller
 
 from app.core.middlewares import cors_middleware
 from app.exceptions import handler

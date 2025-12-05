@@ -5,7 +5,7 @@ from starlette import status
 from app.models import db
 from app.models import dto
 from app.models import enums
-from app.repository import user_repo
+from app.repository import user as user_repo
 
 from app.core.security import bcrypt_hashing
 from app.utils import formatting
@@ -84,7 +84,6 @@ def _create(obj: dto.UserCreateDTO, role: enums.UserRole) -> db.UserDb:
     name_formatted = formatting.format_string(obj.name)
     surname_formatted = formatting.format_string(obj.surname)
     email_formatted = formatting.format_string(obj.email)
-    # password_formatted = formatting.format_string(obj.password)
 
     if name_formatted == "":
         raise AppException(message="Name is not valid", status_code=status.HTTP_400_BAD_REQUEST)
@@ -103,7 +102,6 @@ def _create(obj: dto.UserCreateDTO, role: enums.UserRole) -> db.UserDb:
     user_to_db.surname = surname_formatted
     user_to_db.role = role
     user_to_db.email = email_formatted
-    # user_to_db.password = password_formatted
     user_to_db.password = bcrypt_hashing.hash(obj.password)
 
     return user_repo.add(user_to_db)

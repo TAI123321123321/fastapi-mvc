@@ -4,7 +4,7 @@ from fastapi import Response, Depends
 from fastapi.security import OAuth2PasswordRequestForm
 
 from app.models import dto
-from app.services import user_service
+from app.services import user
 from app.core.security import session
 from app.core import dependencies
 

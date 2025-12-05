@@ -8,7 +8,7 @@ from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Form
 from starlette.responses import JSONResponse, StreamingResponse
 
 from app.models import dto
-from app.services import user_service
+from app.services import user
 from app.core import dependencies
 from app.utils.api_response import ApiResponse
 from app.utils.api_exception import ApiException

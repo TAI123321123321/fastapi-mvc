@@ -6,7 +6,7 @@ from fastapi import Response
 from fastapi import Depends
 
 from app.core.config import CONFIG
-from app.services import user_service
+from app.services import user as user_service
 from app.exceptions.scheme import AppException
 from app.models import enums
 from app.models import dto
