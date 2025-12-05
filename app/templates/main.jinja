@@ -300,18 +300,18 @@
         </section>
 
         <section class="login-right">
-            <form>
+            <form method="POST" action="/login">
                 <div class="form-header">
                     <h2>Đăng nhập tài khoản</h2>
                     <p>Server time: {{ date }}</p>
                 </div>
                 <div class="input-field">
                     <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="you@goplay.vn" required>
+                    <input type="email" id="email" name="email" placeholder="you@goplay.vn" required>
                 </div>
                 <div class="input-field">
                     <label for="password">Mật khẩu</label>
-                    <input type="password" id="password" placeholder="••••••••" required>
+                    <input type="password" id="password" name="password" placeholder="••••••••" required>
                 </div>
                 <div class="form-meta">
                     <label>
